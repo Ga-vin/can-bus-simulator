@@ -27,7 +27,6 @@ class Simulator(object):
         super(Simulator, self).__init__()
         self.arduino = serial.Serial(self.PORT, 9600, timeout=5)
 
-
     def wait_for_code(self, code, timeout=5):
         start = time.time()
         #Wait for a heartbeat

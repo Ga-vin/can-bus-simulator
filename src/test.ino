@@ -29,13 +29,32 @@ int state;
 
 void setup() {
     // IO PORTS
-    Serial.begin(9600);             // opens serial port, sets data rate to 9600 bps    
+    Serial.begin(9600);             // opens serial port, sets data rate to 9600 bps
 
     pinMode(LED_PIN, OUTPUT);       // set pin as output
 
-    state = OK;
+    state = STATE_OK;
 }
 
+//----State Functions
+//-------------------------
+void on_state_ok()
+{
+    
+}
+
+void on_state_reading()
+{
+
+}
+
+void on_state_writing()
+{
+
+}
+
+//----Main Function
+//-------------------------
 void loop() {
 
     //Wait for serial input
@@ -44,7 +63,8 @@ void loop() {
     delay(10);
     String readString;
 
-    while (Serial.available() > 0) {
+    while (Serial.available() > 0)
+    {
         char c = Serial.read();     //gets one byte from serial buffer
         readString += c;            //makes the string readString
     }
