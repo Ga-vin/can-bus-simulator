@@ -7,7 +7,7 @@ class Simulator(object):
     """docstring for Simulator"""
 
     #----CONSTANTS
-    #Codes to communicate with the arduino
+    # Arduino states
     KEEPALIVE   = 0x01
     READ        = 0x02
     WRITE       = 0x03
@@ -44,8 +44,8 @@ class Simulator(object):
     def send_input(self):
         in_file = open(self.in_file_name, "r")
 
-        if(!self.wait_for_code(self.KEEPALIVE)):
-            raise ValueError("Arduino timed out in keepalive")
+        if(!self.wait_for_code(self.OK)):
+            raise ValueError("Arduino timed out in OK")
 
         #Tell the arduino to start reading
         ard.write(self.READ)
@@ -68,7 +68,7 @@ class Simulator(object):
         ard.write(self.DONE)
 
         #Verify that the arduino has gone back to it's default state
-        if(!self.wait_for_code(self.KEEPALIVE)):
+        if(!self.wait_for_code(self.OK)):
             raise ValueError("Arduino timed out in read")
 
     def get_output(self):
